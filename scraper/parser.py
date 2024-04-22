@@ -1,7 +1,13 @@
-from newspaper import Article
+import json
 
-url = 'http://fox13now.com/2013/12/30/new-year-new-laws-obamacare-pot-guns-and-drones/'
+with open('news_data/nashville_news_links.json', 'r') as file:
+    data = json.load(file)
 
-article = Article(url)
+# Extract the "link" field from each entry
+links = [entry['link'] for entry in data]
 
-article.download()
+# Remove duplicates
+unique_links = list(set(links))
+
+for link in unique_links:
+    print(link)
